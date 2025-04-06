@@ -1,0 +1,15 @@
+Hello {{.Name}}!
+
+{{if .IsAdmin}}
+  You are an admin user.
+  {{range .Permissions}}
+    - {{.}}
+  {{end}}
+{{else}}
+  You are a regular user.
+{{end}}
+
+{{with .Profile}}
+  Age: {{.Age}}
+  Email: {{.Email}}
+{{end}}

@@ -1,0 +1,177 @@
+{
+  "type": "*parse.ListNode",
+  "children": [
+    {
+      "type": "*parse.WithNode",
+      "children": [
+        {
+          "type": "body",
+          "children": [
+            {
+              "type": "*parse.TextNode",
+              "value": "\n  Name: "
+            },
+            {
+              "type": "*parse.ActionNode",
+              "details": {
+                "pipe": ".Name"
+              }
+            },
+            {
+              "type": "*parse.TextNode",
+              "value": "\n  "
+            },
+            {
+              "type": "*parse.IfNode",
+              "children": [
+                {
+                  "type": "then",
+                  "children": [
+                    {
+                      "type": "*parse.TextNode",
+                      "value": "\n    Permissions:\n    "
+                    },
+                    {
+                      "type": "*parse.RangeNode",
+                      "children": [
+                        {
+                          "type": "body",
+                          "children": [
+                            {
+                              "type": "*parse.TextNode",
+                              "value": "\n      - "
+                            },
+                            {
+                              "type": "*parse.ActionNode",
+                              "details": {
+                                "pipe": ".Name"
+                              }
+                            },
+                            {
+                              "type": "*parse.TextNode",
+                              "value": ": "
+                            },
+                            {
+                              "type": "*parse.IfNode",
+                              "children": [
+                                {
+                                  "type": "then",
+                                  "children": [
+                                    {
+                                      "type": "*parse.TextNode",
+                                      "value": "Enabled"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "else",
+                                  "children": [
+                                    {
+                                      "type": "*parse.TextNode",
+                                      "value": "Disabled"
+                                    }
+                                  ]
+                                }
+                              ],
+                              "details": {
+                                "condition": ".Enabled"
+                              }
+                            },
+                            {
+                              "type": "*parse.TextNode",
+                              "value": "\n    "
+                            }
+                          ]
+                        }
+                      ],
+                      "details": {
+                        "range": ".Permissions"
+                      }
+                    },
+                    {
+                      "type": "*parse.TextNode",
+                      "value": "\n\n    "
+                    },
+                    {
+                      "type": "*parse.WithNode",
+                      "children": [
+                        {
+                          "type": "body",
+                          "children": [
+                            {
+                              "type": "*parse.TextNode",
+                              "value": "\n      Email: "
+                            },
+                            {
+                              "type": "*parse.ActionNode",
+                              "details": {
+                                "pipe": ".Email"
+                              }
+                            },
+                            {
+                              "type": "*parse.TextNode",
+                              "value": "\n      Phone: "
+                            },
+                            {
+                              "type": "*parse.ActionNode",
+                              "details": {
+                                "pipe": ".Phone"
+                              }
+                            },
+                            {
+                              "type": "*parse.TextNode",
+                              "value": "\n    "
+                            }
+                          ]
+                        }
+                      ],
+                      "details": {
+                        "with": ".Profile"
+                      }
+                    },
+                    {
+                      "type": "*parse.TextNode",
+                      "value": "\n  "
+                    }
+                  ]
+                },
+                {
+                  "type": "else",
+                  "children": [
+                    {
+                      "type": "*parse.TextNode",
+                      "value": "\n    No admin privileges\n  "
+                    }
+                  ]
+                }
+              ],
+              "details": {
+                "condition": ".IsAdmin"
+              }
+            },
+            {
+              "type": "*parse.TextNode",
+              "value": "\n"
+            }
+          ]
+        },
+        {
+          "type": "else",
+          "children": [
+            {
+              "type": "*parse.TextNode",
+              "value": "\n  No user found\n"
+            }
+          ]
+        }
+      ],
+      "details": {
+        "with": ".User"
+      }
+    },
+    {
+      "type": "*parse.TextNode",
+      "value": "\n"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{{with .User}}
+  Name: {{.Name}}
+  {{if .IsAdmin}}
+    Permissions:
+    {{range .Permissions}}
+      - {{.Name}}: {{if .Enabled}}Enabled{{else}}Disabled{{end}}
+    {{end}}
+
+    {{with .Profile}}
+      Email: {{.Email}}
+      Phone: {{.Phone}}
+    {{end}}
+  {{else}}
+    No admin privileges
+  {{end}}
+{{else}}
+  No user found
+{{end}}

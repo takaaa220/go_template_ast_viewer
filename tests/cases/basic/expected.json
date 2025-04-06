@@ -1,0 +1,49 @@
+{
+  "type": "*parse.ListNode",
+  "children": [
+    {
+      "type": "*parse.TextNode",
+      "value": "Hello "
+    },
+    {
+      "type": "*parse.ActionNode",
+      "details": {
+        "pipe": ".Name"
+      }
+    },
+    {
+      "type": "*parse.TextNode",
+      "value": "!\n\n"
+    },
+    {
+      "type": "*parse.IfNode",
+      "children": [
+        {
+          "type": "then",
+          "children": [
+            {
+              "type": "*parse.TextNode",
+              "value": "\n  You are an admin.\n"
+            }
+          ]
+        },
+        {
+          "type": "else",
+          "children": [
+            {
+              "type": "*parse.TextNode",
+              "value": "\n  You are a user.\n"
+            }
+          ]
+        }
+      ],
+      "details": {
+        "condition": ".IsAdmin"
+      }
+    },
+    {
+      "type": "*parse.TextNode",
+      "value": "\n"
+    }
+  ]
+}
