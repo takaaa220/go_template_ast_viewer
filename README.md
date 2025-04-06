@@ -11,6 +11,7 @@ A tool to visualize Go's template AST (Abstract Syntax Tree) in JSON format. Thi
   - Ranges (`{{range}}`)
   - With blocks (`{{with}}`)
 - Provides a clean and readable JSON representation of the template structure
+- Flexible input methods: file, string, or stdin
 
 ## Installation
 
@@ -20,15 +21,43 @@ go install github.com/takaaa220/go_template_ast_viewer@latest
 
 ## Usage
 
+The tool supports three ways to input templates:
+
+### 1. From a string
+
 ```bash
-go_template_ast_viewer <template_file>
+go_template_ast_viewer -s "Hello {{.Name}}!"
 ```
 
-The tool will output the AST structure in JSON format to stdout.
+### 2. From a file
 
-### Example
+```bash
+go_template_ast_viewer -f template.tmpl
+```
 
-Given a template file `example.tmpl`:
+### 3. From stdin
+
+```bash
+# Using file redirection
+go_template_ast_viewer < template.tmpl
+
+# Using pipe
+cat template.tmpl | go_template_ast_viewer
+
+# Using heredoc
+go_template_ast_viewer << EOF
+Hello {{.Name}}!
+{{if .IsAdmin}}
+  You are an admin.
+{{else}}
+  You are a user.
+{{end}}
+EOF
+```
+
+### Example Output
+
+For a template:
 
 ```
 {{with .User}}
@@ -41,13 +70,7 @@ Given a template file `example.tmpl`:
 {{end}}
 ```
 
-Running the tool:
-
-```bash
-go_template_ast_viewer example.tmpl
-```
-
-Will output:
+The tool will output:
 
 ```json
 {
